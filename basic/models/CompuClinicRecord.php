@@ -14,7 +14,7 @@ class CompuClinicRecord extends ActiveRecord
         $hist = new Historique();
         $hist->nomTable = $this->tableName();
         $hist->dateModification = new DateTime();
-        $hist->isInsert = false;
+        $hist->isInsert = 2;
         $hist->valeurAv = json_encode($this->getAttributes(null));
         $hist->insert();
         if ($this->tableName() == "table_sensible") {
@@ -29,7 +29,7 @@ class CompuClinicRecord extends ActiveRecord
         $hist = new Historique();
         $hist->nomTable = $this->tableName();
         $hist->dateModification = new DateTime();
-        $hist->isInsert = $insert;
+        $hist->isInsert = $insert?0:1;
         $tmp = json_encode(array_intersect_key($this->getOldAttributes(), $changedAttributes));
         foreach($changedAttributes as $key=>$value) {
             $hist->valeurAv = strval($value);
