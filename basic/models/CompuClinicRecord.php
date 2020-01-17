@@ -11,6 +11,7 @@ class CompuClinicRecord extends ActiveRecord
 
     public function afterDelete()
     {
+        $userIdentify = Yii::$app->user->identity; // identifiant du user
         $hist = new Historique();
         $hist->nomTable = $this->tableName();
         $hist->dateModification = new DateTime();
@@ -26,6 +27,7 @@ class CompuClinicRecord extends ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
+        $userIdentify = Yii::$app->user->identity; // identifiant du user
         $hist = new Historique();
         $hist->nomTable = $this->tableName();
         $hist->dateModification = new DateTime();
