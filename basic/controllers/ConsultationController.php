@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Consulatation;
-use app\models\ConsulatationSearch;
+use app\models\Consultation;
+use app\models\ConsultationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ConsulatationController implements the CRUD actions for Consulatation model.
+ * ConsultationController implements the CRUD actions for Consultation model.
  */
-class ConsulatationController extends Controller
+class ConsultationController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class ConsulatationController extends Controller
     }
 
     /**
-     * Lists all Consulatation models.
+     * Lists all Consultation models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ConsulatationSearch();
+        $searchModel = new ConsultationSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class ConsulatationController extends Controller
     }
 
     /**
-     * Displays a single Consulatation model.
+     * Displays a single Consultation model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class ConsulatationController extends Controller
     }
 
     /**
-     * Creates a new Consulatation model.
+     * Creates a new Consultation model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Consulatation();
+        $model = new Consultation();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->code]);
@@ -76,7 +76,7 @@ class ConsulatationController extends Controller
     }
 
     /**
-     * Updates an existing Consulatation model.
+     * Updates an existing Consultation model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class ConsulatationController extends Controller
     }
 
     /**
-     * Deletes an existing Consulatation model.
+     * Deletes an existing Consultation model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class ConsulatationController extends Controller
     }
 
     /**
-     * Finds the Consulatation model based on its primary key value.
+     * Finds the Consultation model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Consulatation the loaded model
+     * @return Consultation the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Consulatation::findOne($id)) !== null) {
+        if (($model = Consultation::findOne($id)) !== null) {
             return $model;
         }
 

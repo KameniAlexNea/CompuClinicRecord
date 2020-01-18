@@ -11,7 +11,7 @@ use Yii;
  * @property string|null $nom
  * @property string|null $dateNaissance
  */
-class Medecin extends CompuClinicRecord
+class Medecin extends \app\models\CompuClinicRecord
 {
     /**
      * {@inheritdoc}
@@ -45,14 +45,5 @@ class Medecin extends CompuClinicRecord
             'nom' => 'Nom',
             'dateNaissance' => 'Date Naissance',
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return MedecinQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new MedecinQuery(get_called_class());
     }
 }

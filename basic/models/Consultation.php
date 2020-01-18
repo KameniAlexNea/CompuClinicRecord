@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "consulatation".
+ * This is the model class for table "consultation".
  *
  * @property int $code
  * @property string|null $etatPatient
@@ -14,14 +14,14 @@ use Yii;
  * @property int|null $code_medecin
  * @property int|null $code_patient
  */
-class Consulatation extends CompuClinicRecord
+class Consultation extends \app\models\CompuClinicRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'consulatation';
+        return 'consultation';
     }
 
     /**
@@ -51,14 +51,5 @@ class Consulatation extends CompuClinicRecord
             'code_medecin' => 'Code Medecin',
             'code_patient' => 'Code Patient',
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return ConsulatationQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new ConsulatationQuery(get_called_class());
     }
 }

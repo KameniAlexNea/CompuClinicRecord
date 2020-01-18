@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Consulatation;
+use app\models\Consultation;
 
 /**
- * ConsulatationSearch represents the model behind the search form of `app\models\Consulatation`.
+ * ConsultationSearch represents the model behind the search form of `app\models\Consultation`.
  */
-class ConsulatationSearch extends Consulatation
+class ConsultationSearch extends Consultation
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class ConsulatationSearch extends Consulatation
      */
     public function search($params)
     {
-        $query = Consulatation::find();
+        $query = Consultation::find();
 
         // add conditions that should always apply here
 
