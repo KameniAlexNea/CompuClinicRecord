@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Historique;
+use app\models\Consulatation;
 
 /**
- * HistoriqueSearch represents the model behind the search form of `app\models\Historique`.
+ * ConsulatationSearch represents the model behind the search form of `app\models\Consulatation`.
  */
-class HistoriqueSearch extends Historique
+class ConsulatationSearch extends Consulatation
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class HistoriqueSearch extends Historique
     public function rules()
     {
         return [
-            [['id', 'isInsert'], 'integer'],
-            [['nomTable', 'valeurAv', 'valeurAp', 'dateModification', 'typeDonnee', 'nomColonne'], 'safe'],
+            [['code', 'prix', 'code_medecin', 'code_patient'], 'integer'],
+            [['etatPatient', 'dateConsultation'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class HistoriqueSearch extends Historique
      */
     public function search($params)
     {
-        $query = Historique::find();
+        $query = Consulatation::find();
 
         // add conditions that should always apply here
 
@@ -58,16 +58,14 @@ class HistoriqueSearch extends Historique
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'isInsert' => $this->isInsert,
-            'dateModification' => $this->dateModification,
+            'code' => $this->code,
+            'dateConsultation' => $this->dateConsultation,
+            'prix' => $this->prix,
+            'code_medecin' => $this->code_medecin,
+            'code_patient' => $this->code_patient,
         ]);
 
-        $query->andFilterWhere(['like', 'nomTable', $this->nomTable])
-            ->andFilterWhere(['like', 'valeurAv', $this->valeurAv])
-            ->andFilterWhere(['like', 'valeurAp', $this->valeurAp])
-            ->andFilterWhere(['like', 'typeDonnee', $this->typeDonnee])
-            ->andFilterWhere(['like', 'nomColonne', $this->nomColonne]);
+        $query->andFilterWhere(['like', 'etatPatient', $this->etatPatient]);
 
         return $dataProvider;
     }

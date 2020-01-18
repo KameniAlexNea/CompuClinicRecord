@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Historique;
+use app\models\Patient;
 
 /**
- * HistoriqueSearch represents the model behind the search form of `app\models\Historique`.
+ * PatientSearch represents the model behind the search form of `app\models\Patient`.
  */
-class HistoriqueSearch extends Historique
+class PatientSearch extends Patient
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class HistoriqueSearch extends Historique
     public function rules()
     {
         return [
-            [['id', 'isInsert'], 'integer'],
-            [['nomTable', 'valeurAv', 'valeurAp', 'dateModification', 'typeDonnee', 'nomColonne'], 'safe'],
+            [['code'], 'integer'],
+            [['nom', 'dateNaissance', 'adresse'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class HistoriqueSearch extends Historique
      */
     public function search($params)
     {
-        $query = Historique::find();
+        $query = Patient::find();
 
         // add conditions that should always apply here
 
@@ -58,16 +58,12 @@ class HistoriqueSearch extends Historique
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'isInsert' => $this->isInsert,
-            'dateModification' => $this->dateModification,
+            'code' => $this->code,
+            'dateNaissance' => $this->dateNaissance,
         ]);
 
-        $query->andFilterWhere(['like', 'nomTable', $this->nomTable])
-            ->andFilterWhere(['like', 'valeurAv', $this->valeurAv])
-            ->andFilterWhere(['like', 'valeurAp', $this->valeurAp])
-            ->andFilterWhere(['like', 'typeDonnee', $this->typeDonnee])
-            ->andFilterWhere(['like', 'nomColonne', $this->nomColonne]);
+        $query->andFilterWhere(['like', 'nom', $this->nom])
+            ->andFilterWhere(['like', 'adresse', $this->adresse]);
 
         return $dataProvider;
     }

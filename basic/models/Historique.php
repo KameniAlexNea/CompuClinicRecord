@@ -13,7 +13,7 @@ use Yii;
  * @property string|null $valeurAp
  * @property int|null $isInsert
  * @property string|null $dateModification
- * @property int|null $typeDonnee
+ * @property string|null $typeDonnee
  * @property string|null $nomColonne
  */
 class Historique extends \yii\db\ActiveRecord
@@ -33,9 +33,10 @@ class Historique extends \yii\db\ActiveRecord
     {
         return [
             [['valeurAv', 'valeurAp'], 'string'],
-            [['isInsert', 'typeDonnee'], 'integer'],
+            [['isInsert'], 'integer'],
             [['dateModification'], 'safe'],
             [['nomTable', 'nomColonne'], 'string', 'max' => 50],
+            [['typeDonnee'], 'string', 'max' => 11],
         ];
     }
 
@@ -47,8 +48,8 @@ class Historique extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nomTable' => 'Nom Table',
-            'valeurAv' => 'Valeur Avant',
-            'valeurAp' => 'Valeur Après',
+            'valeurAv' => 'Valeur Av',
+            'valeurAp' => 'Valeur Ap',
             'isInsert' => 'Is Insert',
             'dateModification' => 'Date Modification',
             'typeDonnee' => 'Type Donnee',

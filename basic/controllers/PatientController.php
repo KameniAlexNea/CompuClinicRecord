@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Historique;
-use app\models\HistoriqueSearch;
+use app\models\Patient;
+use app\models\PatientSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * HistoriqueController implements the CRUD actions for Historique model.
+ * PatientController implements the CRUD actions for Patient model.
  */
-class HistoriqueController extends Controller
+class PatientController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class HistoriqueController extends Controller
     }
 
     /**
-     * Lists all Historique models.
+     * Lists all Patient models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new HistoriqueSearch();
+        $searchModel = new PatientSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class HistoriqueController extends Controller
     }
 
     /**
-     * Displays a single Historique model.
+     * Displays a single Patient model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class HistoriqueController extends Controller
     }
 
     /**
-     * Creates a new Historique model.
+     * Creates a new Patient model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Historique();
+        $model = new Patient();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->code]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class HistoriqueController extends Controller
     }
 
     /**
-     * Updates an existing Historique model.
+     * Updates an existing Patient model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class HistoriqueController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->code]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class HistoriqueController extends Controller
     }
 
     /**
-     * Deletes an existing Historique model.
+     * Deletes an existing Patient model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class HistoriqueController extends Controller
     }
 
     /**
-     * Finds the Historique model based on its primary key value.
+     * Finds the Patient model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Historique the loaded model
+     * @return Patient the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Historique::findOne($id)) !== null) {
+        if (($model = Patient::findOne($id)) !== null) {
             return $model;
         }
 
